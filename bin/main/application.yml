@@ -1,0 +1,26 @@
+
+server:
+  port: 8282
+  servlet:
+    context-path: /
+    
+spring:
+  application:
+    name: wms-api-gateway
+    
+eureka:
+  instance:
+    preferIpAddress:  true
+  client:
+    registerWithEureka: true
+    fetchRegistry:  true
+    serviceUrl:
+      defaultZone:  ${EUREKA_URI:http://10.137.72.220:8761/eureka}
+      
+zuul.routes.wms-api: /wms-api/**
+
+zuul:
+  routes:
+    wms-api:
+      path: /wms-api/**
+      service-id: wms-api
